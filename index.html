@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timo Guye — CV</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #dce8f5 0%, #e8dff5 50%, #d5e8f0 100%);
+    color: #1d1d1f;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    padding: 40px 24px 60px;
+  }
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .header {
+    padding: 52px 56px 48px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg,
+      rgba(200,210,230,0.55) 0%,
+      rgba(220,230,245,0.45) 30%,
+      rgba(210,220,240,0.50) 60%,
+      rgba(195,210,235,0.55) 100%
+    );
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg,
+      rgba(255,255,255,0.45) 0%,
+      rgba(255,255,255,0.10) 50%,
+      rgba(180,200,230,0.20) 100%
+    );
+    pointer-events: none;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .name-block {
+    margin-left: -4px;
+  }
+  .name-block h1 {
+    font-size: 38px;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .name-block .title {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.45);
+    margin-top: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .contact-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    align-items: flex-end;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.35);
+    border: 0.5px solid rgba(255,255,255,0.7);
+    border-radius: 100px;
+    padding: 5px 14px 5px 10px;
+    font-size: 12px;
+    color: rgba(0,0,0,0.65);
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .pill:hover {
+    background: rgba(255,255,255,0.55);
+  }
+  .pill-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.25);
+    flex-shrink: 0;
+  }
+  .header-bio {
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 0.5px solid rgba(0,0,0,0.10);
+  }
+  .header-bio p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: rgba(0,0,0,0.55);
+    max-width: 600px;
+    font-weight: 300;
+  }
+  .meta-strip {
+    background: linear-gradient(135deg, #dce8f5 0%, #e8dff5 50%, #d5e8f0 100%);
+    padding: 14px 56px;
+    display: flex;
+    gap: 32px;
+    border-bottom: 0.5px solid #e0e0e5;
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .meta-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: #86868b;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  .meta-value { font-size: 13px; color: #1d1d1f; font-weight: 400; }
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+  }
+  .main-col {
+    padding: 44px 48px 52px 56px;
+    border-right: 0.5px solid #e8e8ed;
+  }
+  .side-col { padding: 44px 40px 52px 36px; }
+  .section { margin-bottom: 44px; }
+  .section:last-child { margin-bottom: 0; }
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #86868b;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: #e8e8ed;
+  }
+  .job {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 0.5px solid #f0f0f5;
+  }
+  .job:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 4px;
+  }
+  .job-title { font-size: 15px; font-weight: 600; color: #1d1d1f; line-height: 1.3; }
+  .job-date { font-size: 11.5px; color: #86868b; font-weight: 400; white-space: nowrap; padding-top: 2px; flex-shrink: 0; }
+  .job-company { font-size: 12.5px; color: #6e6e73; font-weight: 400; margin-bottom: 12px; }
+  .job-desc { font-size: 13px; color: #3d3d3f; line-height: 1.6; margin-bottom: 10px; }
+  .bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .bullets li {
+    font-size: 12.5px;
+    color: #3d3d3f;
+    line-height: 1.55;
+    padding-left: 14px;
+    position: relative;
+  }
+  .bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: #86868b;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  .results-tag {
+    display: inline-block;
+    background: #f0f7ff;
+    color: #0071e3;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+  .service-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin-top: 10px;
+  }
+  .service-chip {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: linear-gradient(135deg, #dce8f5 0%, #e8dff5 50%, #d5e8f0 100%);
+    border: 0.5px solid #e8e8ed;
+    border-radius: 10px;
+    padding: 9px 12px;
+  }
+  .service-chip-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    background: #1d1d1f;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .service-chip-icon span { color: #fff; font-size: 10px; font-weight: 600; }
+  .service-chip-text { font-size: 11.5px; color: #1d1d1f; font-weight: 500; line-height: 1.3; }
+  .service-chip-sub { font-size: 10.5px; color: #86868b; font-weight: 400; margin-top: 1px; }
+  .side-section { margin-bottom: 34px; }
+  .side-section:last-child { margin-bottom: 0; }
+  .edu-entry { margin-bottom: 14px; }
+  .edu-entry:last-child { margin-bottom: 0; }
+  .edu-title { font-size: 12.5px; font-weight: 500; color: #1d1d1f; line-height: 1.35; }
+  .edu-sub { font-size: 11.5px; color: #6e6e73; margin-top: 1px; }
+  .lang-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 0.5px solid #f0f0f5;
+  }
+  .lang-entry:last-child { border-bottom: none; }
+  .lang-name { font-size: 13px; color: #1d1d1f; font-weight: 400; }
+  .lang-level { font-size: 11px; color: #6e6e73; }
+  .lang-dots { display: flex; gap: 4px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #e0e0e5; }
+  .dot.filled { background: #1d1d1f; }
+  .tag-group { margin-bottom: 14px; }
+  .tag-group-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #86868b;
+    margin-bottom: 7px;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tag {
+    font-size: 11px;
+    font-weight: 400;
+    color: #3d3d3f;
+    background: linear-gradient(135deg, #dce8f5 0%, #e8dff5 50%, #d5e8f0 100%);
+    border: 0.5px solid #e0e0e5;
+    border-radius: 6px;
+    padding: 3px 9px;
+  }
+  .ref-card { background: #f5f5f7; border-radius: 12px; padding: 14px 16px; }
+  .ref-name { font-size: 13px; font-weight: 500; color: #1d1d1f; margin-bottom: 2px; }
+  .ref-role { font-size: 11.5px; color: #6e6e73; margin-bottom: 10px; }
+  .ref-detail { font-size: 11.5px; color: #3d3d3f; line-height: 1.65; }
+
+  .photo-wrap {
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.85);
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.4), 0 8px 32px rgba(0,0,0,0.2);
+    isolation: isolate;
+    background: #333;
+    align-self: center;
+    margin-right: 0;
+  }
+  .photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.5);
+    object-position: center 3%;
+    display: block;
+  }
+
+
+  .client-strip {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .client-strip-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #86868b;
+  }
+  .client-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .client-tag {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #1d1d1f;
+    background: #f5f5f7;
+    border: 0.5px solid #e0e0e5;
+    border-radius: 8px;
+    padding: 4px 12px;
+    letter-spacing: 0.01em;
+  }
+  .no-bullet::before { content: none !important; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-top">
+      <div class="photo-wrap">
+        <img src="Gemini_Generated_Image_mnjresmnjresmnjr.png">
+      </div>
+      <div class="name-block">
+        <h1>Timo Guye</h1>
+        <div class="title">Performance Marketing Manager</div>
+      </div>
+      <div class="contact-pills">
+        <a href="tel:+41762492348" class="pill"><span class="pill-dot"></span>+41 76 249 23 48</a>
+        <a href="mailto:timo.guye@yahoo.de" class="pill"><span class="pill-dot"></span>timo.guye@yahoo.de</a>
+        <a href="https://maps.google.com/?q=Lägernstrasse+8,+5400+Baden" target="_blank" class="pill"><span class="pill-dot"></span>Lägernstrasse 8, 5400 Baden</a>
+        <a href="https://www.linkedin.com/in/timoguye/" target="_blank" class="pill"><span class="pill-dot"></span>LinkedIn</a>
+        <a href="https://www.instagram.com/timomrk_/" target="_blank" class="pill"><span class="pill-dot"></span>Instagram</a>
+      </div>
+    </div>
+    <div class="header-bio">
+      <p>Performance Marketing Manager mit über 5 Jahren Erfahrung in der operativen Steuerung von Meta- und Google-Ads-Kampagnen. Fokus auf datengetriebene Optimierung, systematisches Creative Testing und sauberes Tracking-Setup.</p>
+    </div>
+  </div>
+
+  <div class="meta-strip">
+    <div class="meta-item"><span class="meta-label">Geburtstag</span><span class="meta-value">27. Dezember 1992</span></div>
+    <div class="meta-item"><span class="meta-label">Geburtsort</span><span class="meta-value">Zürich</span></div>
+    <div class="meta-item"><span class="meta-label">Staatsangehörigkeit</span><span class="meta-value">Schweizer</span></div>
+    <div class="meta-item"><span class="meta-label">Familienstand</span><span class="meta-value">Ledig</span></div>
+    <div class="meta-item"><span class="meta-label">Hobbies</span><span class="meta-value">Musik · Fotografie · Sport</span></div>
+  </div>
+
+  <div class="body">
+    <div class="main-col">
+      <div class="section">
+        <div class="section-label">Berufserfahrung</div>
+
+        <!-- 1. Scewo -->
+        <div class="job">
+          <div class="job-header">
+            <div class="job-title">Performance Marketing Manager</div>
+            <div class="job-date">Okt 2023 – Dez 2025</div>
+          </div>
+          <div class="job-company">Scewo AG · Winterthur · 100%</div>
+          <p class="job-desc">Gesamtverantwortung für den Aufbau und die strategische Steuerung des Performance Marketings. Mitgestaltung der Social-Media-Strategie, Content-Produktion sowie laufendes Monitoring und Reporting der organischen Kanäle.</p>
+          <ul class="bullets">
+            <li>Strategische Planung und operative Steuerung internationaler Meta- und Google-Ads-Kampagnen · Budgetverantwortung CHF 200'000 p.a.</li>
+            <li>Aufbau und kontinuierliche Weiterentwicklung der gesamten Performance-Marketing-Struktur</li>
+            <li>Lead-Verantwortung für alle SEO-Massnahmen inkl. Content-Koordination mit internen und externen Stakeholdern</li>
+            <li>Implementierung des vollständigen Tracking-Setups, clientseitig via Google Tag Manager und serverseitig via Stape (CAPI), inklusive laufender Attribution-Qualitätssicherung.</li>
+            <li>Konzeption und Optimierung von Marketing-Funnels und Landingpages zur Maximierung der Conversion-Rate</li>
+            <li>Systematische Lead-Generierung sowie datengetriebene Optimierung der Ad Creatives via A/B-Tests</li>
+            <li style="page-break-after: always;">Wöchentliche Reportings und KPI-Interpretation als Entscheidungsgrundlage</li>
+            <li class="no-bullet" style="padding-top: 60px;"></li>
+            <li>KI-Tools wurden recherchiert, implementiert und betreut, mit Fokus auf Funnel-Optimierung, Creative-Produktion und Prozessautomatisierung.</li>
+            <li>Mitarbeit bei der Weiterentwicklung von CRM-Prozessen sowie Aufbau und Pflege von Marketing-Automatisierungen in HubSpot und Klaviyo.</li>
+          </ul>
+          <div class="results-tag">Ergebnisse</div>
+          <ul class="bullets">
+            <li>Lead-Conversion-Rate von 4.7 % auf 10 % gesteigert und nachhaltig bei 8–10 % gehalten (+113 %).</li>
+            <li>CAC von CHF 250 auf CHF 105 gesenkt (−58 %).</li>
+            <li>Implementierung gezielter SEO-Massnahmen, welche die organische Sichtbarkeit nachhaltig ausbauen, mit Top-3-Rankings für die relevantesten Kernbegriffe — sichtbar in klassischen Suchmaschinen und in KI-Suchantworten von ChatGPT, Google AI Overviews, Gemini, Claude, etc.</li> 
+            <li>Aufbau eines wöchentlichen Creative-Testing-Prozesses, der die Ad-Diversität im Meta-Werbekonto kontinuierlich erhöht, Winning Ads systematisch identifiziert und damit die Grundlage für eine nachhaltige Skalierung schafft.</li>
+            <li>Die betreuten Kanäle (Meta Ads, Google Ads, SEO) generierten durchschnittlich 70 % aller Unternehmens-Leads und waren damit der zentrale Wachstumstreiber im Unternehmen.</li>
+          </ul>
+        </div>
+
+        <!-- 2. Selbständig -->
+        <div class="job">
+          <div class="job-header">
+            <div class="job-title">Selbständiger Berater</div>
+            <div class="job-date">Jan 2019 – heute</div>
+          </div>
+          <div class="job-company">Performance Marketing · SEO · Social Media Marketing</div>
+          <p class="job-desc">Seit 2019 übernehme ich selbständig Projekte für Start-Ups und Online-Shops im Bereich Performance Marketing, SEO und Social Media — von der Analyse bis zur operativen Umsetzung.</p>
+          <div class="service-grid">
+            <div class="service-chip">
+              <div class="service-chip-icon"><span>01</span></div>
+              <div>
+                <div class="service-chip-text">Audit & Setup</div>
+                <div class="service-chip-sub">Pixel, CAPI, Tracking-Infrastruktur</div>
+              </div>
+            </div>
+            <div class="service-chip">
+              <div class="service-chip-icon"><span>02</span></div>
+              <div>
+                <div class="service-chip-text">Skalierung</div>
+                <div class="service-chip-sub">Bidding-Strategien & Kampagnenstruktur</div>
+              </div>
+            </div>
+            <div class="service-chip">
+              <div class="service-chip-icon"><span>03</span></div>
+              <div>
+                <div class="service-chip-text">Testing & Dokumentation</div>
+                <div class="service-chip-sub">Strukturierte A/B-Tests & Learnings</div>
+              </div>
+            </div>
+            <div class="service-chip">
+              <div class="service-chip-icon"><span>04</span></div>
+              <div>
+                <div class="service-chip-text">Reporting & Next Steps</div>
+                <div class="service-chip-sub">Klare KPI-Auswertung & Massnahmen</div>
+              </div>
+            </div>
+            <div class="service-chip">
+              <div class="service-chip-icon"><span>05</span></div>
+              <div>
+                <div class="service-chip-text">SEO</div>
+                <div class="service-chip-sub">Technisch, OnPage & Content</div>
+              </div>
+            </div>
+            <div class="service-chip">
+              <div class="service-chip-icon"><span>06</span></div>
+              <div>
+                <div class="service-chip-text">Social Media Marketing</div>
+                <div class="service-chip-sub">Strategie, Content & Community</div>
+              </div>
+            </div>
+          </div>
+          <div class="client-strip">
+            <div class="client-strip-label">Auszug Kundschaft</div>
+            <ul class="bullets" style="margin-top: 4px;">
+              <li>Strategy School Münster <span style="color:#86868b; font-weight:400;">(Performance Marketing, SEO)</span></li>
+              <li>Skinbro <span style="color:#86868b; font-weight:400;">(Performance Marketing)</span></li>
+              <li>Hundeschule Ohana <span style="color:#86868b; font-weight:400;">(Social Media)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Smart Media -->
+        <div class="job" style="page-break-before: always; padding-top: 60px;">
+          <div class="job-header">
+            <div class="job-title">SEO Manager</div>
+            <div class="job-date">Feb 2022 – Feb 2023</div>
+          </div>
+          <div class="job-company">Smart Media Agency · Zürich · 100%</div>
+          <ul class="bullets">
+            <li>Entwicklung der SEO-Strategie für fokus.swiss (D/F) und smartemployer.ch (D/F)</li>
+            <li>Koordination technischer SEO-Implementierungen (Core Web Vitals, Crawling, Indexierung, Heading-Struktur, Bilder-SEO)</li>
+            <li>Keyword Research, Content-Gap-Analysen, Competitor Research und Erstellung von SEO-Content-Guidelines</li>
+            <li>Optimierung des Tracking-Setups in Google Tag Manager und Migration auf GA4</li>
+            <li>Konzeption und Steuerung von Kundenkampagnen via Facebook Business Manager und Google Ads</li>
+          </ul>
+        </div>
+
+        <!-- 4. RESO Werkstudent -->
+        <div class="job">
+          <div class="job-header">
+            <div class="job-title">Werkstudent</div>
+            <div class="job-date">Aug 2017 – Dez 2018</div>
+          </div>
+          <div class="job-company">RESO Partners AG · Wallisellen</div>
+          <ul class="bullets">
+            <li>Fachspezifisches Übersetzen von Artikeln, Blogs, internen Dokumenten und Social-Media-Inhalten (DE/FR/EN)</li>
+          </ul>
+        </div>
+
+        <!-- 5. RESO Praktikum -->
+        <div class="job">
+          <div class="job-header">
+            <div class="job-title">Kaufmännisches Praktikum</div>
+            <div class="job-date">Aug 2016 – Jul 2017</div>
+          </div>
+          <div class="job-company">RESO Partners AG · Wallisellen</div>
+          <ul class="bullets">
+            <li>Human Resources, Kreditoren- und Debitorenbuchhaltung, CRM-Pflege</li>
+            <li>Planung und Durchführung von Messen, Firmenpräsentationen und Events</li>
+            <li>Übersetzungen für Print, Web und Social Media (DE/FR/EN)</li>
+          </ul>
+        </div>
+
+        <!-- 6. Radio -->
+        <div class="job">
+          <div class="job-header">
+            <div class="job-title">Radiojournalistisches Praktikum</div>
+            <div class="job-date">Jun 2014 – Feb 2016</div>
+          </div>
+          <div class="job-company">Radio Kanal K · Aarau</div>
+          <ul class="bullets">
+            <li>Programmierung und Planung der täglichen Sendungen</li>
+            <li>Administration und Management in Zusammenarbeit mit dem Radiojournalisten-Team</li>
+            <li>Konzeption und Moderation einer eigenen Radioshow</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="side-col">
+      <div class="side-section">
+        <div class="section-label">Ausbildung</div>
+        <div class="edu-entry">
+          <div class="edu-title">BSc Wirtschaftsinformatik</div>
+          <div class="edu-sub">ZHAW Winterthur · 2017–2022</div>
+        </div>
+        <div class="edu-entry">
+          <div class="edu-title">Kaufmännische Berufsmatura</div>
+          <div class="edu-sub">WMS Baden · 2010–2014</div>
+        </div>
+        <div class="edu-entry">
+          <div class="edu-title">Sekundar- & Bezirksstufe</div>
+          <div class="edu-sub">Oberstufe Obersiggenthal · 2005–2010</div>
+        </div>
+        <div class="edu-entry">
+          <div class="edu-title">Primarstufe</div>
+          <div class="edu-sub">Schule Obersiggenthal · 2000–2005</div>
+        </div>
+      </div>
+
+      <div class="side-section" style="margin-bottom: 200px;">
+        <div class="section-label">Sprachen</div>
+        <div class="lang-entry">
+          <div><div class="lang-name">Deutsch</div><div class="lang-level">Muttersprache</div></div>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="lang-entry">
+          <div><div class="lang-name">Französisch</div><div class="lang-level">Bi-Lingual · DELF B2</div></div>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+          </div>
+        </div>
+        <div class="lang-entry">
+          <div><div class="lang-name">Englisch</div><div class="lang-level">Verhandlungssicher · First</div></div>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+          </div>
+        </div>
+      <div style="page-break-before: always; padding-top: 60px;"></div>
+      <div class="side-section">
+        <div class="section-label">Software & Tools</div>
+        <div class="tag-group">
+          <div class="tag-group-label">Performance Marketing</div>
+          <div class="tags">
+            <span class="tag">Meta Business Suite</span>
+            <span class="tag">Google Ads</span>
+            <span class="tag">Google Analytics</span>
+            <span class="tag">Google Tag Manager</span>
+            <span class="tag">Looker Studio</span>
+            <span class="tag">Klaviyo</span>
+            <span class="tag">Mailchimp</span>
+            <span class="tag">Klar</span>
+            <span class="tag">Motion</span>
+            <span class="tag">Foreplay</span>
+          </div>
+        </div>
+        <div class="tag-group">
+          <div class="tag-group-label">SEO</div>
+          <div class="tags">
+            <span class="tag">Google Search Console</span>
+            <span class="tag">Ahrefs</span>
+            <span class="tag">Screaming Frog</span>
+            <span class="tag">Ubersuggest</span>
+            <span class="tag">RankMath</span>
+          </div>
+        </div>
+        <div class="tag-group">
+          <div class="tag-group-label">AI</div>
+          <div class="tags">
+            <span class="tag">Claude</span>
+            <span class="tag">ChatGPT</span>
+            <span class="tag">Higgsfield AI</span>
+            <span class="tag">Nano Banana 2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-section">
+        <div class="section-label">Referenz</div>
+        <div class="ref-card">
+          <div class="ref-name">Leo Hess</div>
+          <div class="ref-role">Head of Marketing · Scewo AG</div>
+          <div class="ref-detail">
+            Technoparkstrasse 7<br>
+            8406 Winterthur<br>
+            +41 44 500 86 75<br>
+            l.hess@scewo.ch
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
